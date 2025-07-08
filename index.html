@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+   <title>Rawaway</title>
+   <style>
+      .headerBg {
+         background-image: url('./images/header.avif');
+         background-size: cover;
+         background-position: center;
+         background-repeat: no-repeat;
+         position: relative;
+      }
+
+      .headerBg::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         background-color: rgba(0, 0, 0, 0.6);
+         z-index: 1;
+      }
+
+      * {
+         scroll-behavior: smooth;
+      }
+
+      .headerBg>* {
+         position: relative;
+         z-index: 2;
+      }
+
+      .informationBg {
+         background-image: url('./images/global-information.avif');
+         background-size: cover;
+         background-position: center;
+         background-repeat: no-repeat;
+         position: relative;
+      }
+
+      .informationBg::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         background-color: rgba(0, 0, 0, 0.4);
+         z-index: 1;
+      }
+
+      .informationBg>* {
+         position: relative;
+         z-index: 2;
+      }
+
+      /* Updated Mobile menu styles */
+      .mobile-menu {
+         transform: translateY(-100%);
+         transition: transform 0.3s ease-in-out;
+         background: white;
+      }
+
+      .mobile-menu.active {
+         transform: translateY(0);
+      }
+
+      @media (max-width: 768px) {
+         .desktop-nav {
+            display: none;
+         }
+      }
+
+      @media (min-width: 769px) {
+         .mobile-nav {
+            display: none;
+         }
+      }
+
+      /* Mobile menu link styles */
+      .mobile-menu-link {
+         font-size: 28px;
+         text-align: center;
+         color: #000;
+         padding: 20px 0;
+         display: block;
+         border-bottom: none !important;
+         font-weight: 500;
+      }
+
+      .mobile-menu-link:hover {
+         color: #F3901D !important;
+      }
+
+      /* Mobile contact button style */
+      .mobile-contact-btn {
+         background: #F3901D;
+         color: black;
+         text-align: center;
+         padding: 15px;
+         width: 80%;
+         margin: 20px auto;
+         display: block;
+         font-size: 18px;
+         border: 1px solid #e30613;
+      }
+
+      /* Close button position */
+      .close-btn-position {
+         position: absolute;
+         top: 20px;
+         right: 20px;
+         color: #e30613;
+      }
+   </style>
+</head>
+
+<!-- primary color : #F3901D -->
+
+<body class="font-sans">
+   <!-- Header -->
+   <header class="fixed w-full bg-white shadow-sm z-50">
+      <nav
+         class="mx-auto px-4 md:px-6 lg:px-10 h-[100px] md:h-[120px] lg:h-[160px] flex items-center justify-center gap-5 md:gap-0 md:justify-between">
+         <!-- Logo -->
+         <div class="">
+            <img src="images/logo.svg" alt="Rawaway Logo" class="h-14 md:h-12 lg:h-18 w-auto">
+         </div>
+
+         <!-- Desktop Navigation -->
+         <div class="desktop-nav flex items-center flex-wrap gap-2 md:gap-0">
+            <div class="flex items-center border border-[#F3901D] h-[50px] md:h-[60px] lg:h-[70px] bg-white">
+               <a href="#about"
+                  class="px-4 md:px-8 lg:px-12 h-full flex items-center text-gray-600 hover:text-[#e30613] hover:bg-gray-200 transition-all duration-200 border-gray-300 text-sm md:text-base">About
+                  Us</a>
+               <a href="#solutions"
+                  class="px-4 md:px-8 lg:px-12 h-full flex items-center text-gray-600 hover:text-[#e30613] hover:bg-gray-200 transition-all duration-200 border-gray-300 text-sm md:text-base">Solutions</a>
+               <a href="#clients"
+                  class="px-4 md:px-8 lg:px-12 h-full flex items-center text-gray-600 hover:text-[#e30613] hover:bg-gray-200 transition-all duration-200 border-gray-300 text-sm md:text-base">Clients</a>
+               <a href="#activities"
+                  class="px-4 md:px-8 lg:px-12 h-full flex items-center text-gray-600 hover:text-[#e30613] hover:bg-gray-200 transition-all duration-200 border-gray-300 text-sm md:text-base">Activities</a>
+            </div>
+            <button
+               class="px-4 md:px-8 lg:px-12 ml-[2px] cursor-pointer h-[50px] md:h-[60px] lg:h-[70px] flex border border-[#F3901D] hover:text-[#e30613] items-center bg-[#F3901D] hover:bg-[#000] transition-all duration-200 text-sm md:text-base">Contact
+               Us</button>
+         </div>
+
+         <!-- Mobile Menu Button -->
+         <div class="mobile-nav">
+            <button id="mobile-menu-btn" class="text-[#F3901D] focus:outline-none">
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+               </svg>
+            </button>
+         </div>
+      </nav>
+
+      <!-- Mobile Menu Overlay -->
+      <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white z-40">
+         <div class="flex flex-col h-full pt-16 pb-8">
+            <!-- Close Button -->
+            <button id="close-menu-btn" class="close-btn-position text-gray-600 hover:text-[#F3901D]">
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+               </svg>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="flex-1 flex flex-col mt-20">
+               <a href="#about" class="mobile-menu-link">About Us</a>
+               <a href="#solutions" class="mobile-menu-link">Solutions</a>
+               <a href="#clients" class="mobile-menu-link">Clients</a>
+               <a href="#activities" class="mobile-menu-link">Activites</a>
+               <a href="#numbers" class="mobile-menu-link">The Numbers</a>
+               <button class="mobile-contact-btn">Contact Us</button>
+            </nav>
+         </div>
+      </div>
+   </header>
+
+   <!-- Hero Section with Background -->
+   <section
+      class="headerBg relative h-screen min-h-[500px] bg-cover bg-center bg-fixed flex items-center pt-[80px] md:pt-[120px] lg:pt-[160px]">
+      <div class="relative container mx-auto px-4 md:px-6 text-white">
+         <div class="max-w-4xl">
+            <h1 class="text-[68px] md:text-[80px] lg:text-[100px] font-bold leading-[1.2] mb-6">
+               A Global<br>
+               Network of<br>
+               Influence
+            </h1>
+            <p class="text-[35px] md:text-[30px] lg:text-[35px] font-semibold mb-12 leading-[1.4] max-w-[100%]">
+               Rawaway: Your metal trading partner<br>
+               providing solutions and facilitating<br>
+               exchanges of goods across the<br>
+               world.
+            </p>
+            <!-- Hero Section Buttons -->
+            <div class="flex flex-row gap-6 w-full max-w-[450px]">
+               <a href="#activities"
+                  class="w-full h-[60px] flex items-center justify-center bg-[#F3901D] text-black hover:bg-[#d67b16] transition-colors duration-200 text-center text-lg font-normal">Activities</a>
+               <a href="#contact"
+                  class="w-full h-[60px] flex items-center justify-center border-2 border-white hover:bg-[#F3901D] hover:border-[#F3901D] text-white transition-colors duration-200 text-center text-lg font-normal">Contact
+                  Us</a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- About Us Section -->
+   <section id="about" class="py-10 md:py-20 bg-white">
+      <div class="container mx-auto px-4 md:px-6">
+         <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-[120px]">
+            <!-- Image -->
+            <div class="w-full lg:w-[45%] order-1 lg:order-1">
+               <img src="images/about.avif" alt="About Us" class="w-full h-auto">
+            </div>
+
+            <!-- Content -->
+            <div class="w-full lg:w-[360px] order-2 lg:order-2">
+               <h2 class="text-2xl md:text-3xl lg:text-[36px] font-bold text-[#F3901D] mb-6 md:mb-8">About Us</h2>
+
+               <p class="text-gray-700 leading-relaxed mb-6 md:mb-10 text-sm md:text-base">
+                  Rawaway unites a carefully curated global business community specializing in metal trading, comprising
+                  experts in international trade, financial structuring, legal professionals, government
+                  representatives, and leading CEOs.
+               </p>
+
+               <p class="text-gray-700 leading-relaxed text-sm md:text-base">
+                  Together, we share a common vision: to deliver innovative solutions and enable the seamless exchange
+                  of metals and minerals across the globe. Our collaborative approach ensures that we effectively
+                  navigate the complexities of the market, facilitating reliable transactions and sustainable
+                  partnerships in the metal trading industry.
+               </p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Solutions Section -->
+   <section id="solutions" class="py-10 md:py-20 bg-[#F3901D]">
+      <div class="container mx-auto px-4 md:px-6">
+         <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-[120px]">
+            <!-- Image -->
+            <div class="w-full lg:w-[45%] order-1 lg:order-1">
+               <img src="images/solutions.avif" alt="Solutions" class="w-full h-auto">
+            </div>
+
+            <!-- Content -->
+            <div class="w-full lg:w-[360px] order-2 lg:order-2">
+               <h2 class="text-2xl md:text-3xl lg:text-[36px] font-bold mb-6 md:mb-8 text-white">Solutions</h2>
+
+               <p class="text-white text-sm md:text-[15px] leading-relaxed mb-6 md:mb-10">
+                  We excel at orchestrating complex supply chains to transport commodities from their source of
+                  production to their final destination. By sourcing raw materials and goods directly from our extensive
+                  global network of suppliers, we deliver them to our partners across the world. This process includes
+                  shipping by sea, rail, and road, as well as the storage, processing, and timely delivery of goods, all
+                  while ensuring the highest standards of quality and meeting the precise specifications of our
+                  international clients.
+               </p>
+
+               <p class="text-white text-sm md:text-[15px] leading-relaxed">
+                  We empower our clients, leaders in steel production, to reach their targets in terms of:
+                  <br><br>
+                  Efficiency: Their EAFs use electrical energy, providing flexibility and faster production cycles
+                  compared to traditional blast furnaces.
+                  <br><br>
+                  Sustainability: By recycling scrap steel, they contribute to reducing carbon emissions and minimizing
+                  the use of raw materials like iron ore.
+                  <br><br>
+                  Innovation: We support them to stay ahead of industry trends and their implementation of cutting-edge
+                  technology, ensuring that their steel products meet the highest standards.
+               </p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Clients Section -->
+   <section id="clients" class="py-10 md:py-20 bg-white">
+      <div class="container mx-auto px-4 md:px-6">
+         <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-[120px]">
+            <!-- Image -->
+            <div class="w-full lg:w-[45%] order-1 lg:order-1">
+               <img src="images/clients.avif" alt="Clients" class="w-full h-auto">
+            </div>
+
+            <!-- Content -->
+            <div class="w-full lg:w-[360px] order-2 lg:order-2">
+               <h2 class="text-2xl md:text-3xl lg:text-[36px] font-bold text-[#F3901D] mb-6 md:mb-8">Clients</h2>
+
+               <p class="text-gray-700 leading-relaxed mb-6 md:mb-10 text-sm md:text-base">
+                  Our success in lobbying and international business is grounded in long-standing relationships with key
+                  government and business decision-makers, combined with a comprehensive understanding of the political,
+                  economic, security, cultural, and historical complexities that influence their choices.
+               </p>
+
+               <p class="text-gray-700 leading-relaxed text-sm md:text-base">
+                  With a global network of partners and extensive business connections, Rawaway serves clients including
+                  steel manufacturers, Recycling refineries, foundries equipped with Electric Arc Furnaces (EAF), as
+                  well as Fortune 500 companies, governments, trade associations, and financial institutions. When
+                  business leaders, industry representatives, and government officials confront their most pressing
+                  challenges, they turn to a trusted partner: Rawaway. Our expertise ensures that EAF-equipped steel
+                  plants and foundries receive the support and resources necessary to thrive in today's competitive
+                  market.
+               </p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Activities Section -->
+   <section id="activities" class="py-10 md:py-20 bg-white">
+      <div class="container mx-auto px-4 md:px-6">
+         <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-[120px]">
+            <!-- Image -->
+            <div class="w-full lg:w-[45%] order-1 lg:order-2">
+               <img src="images/our-activities.avif" alt="Our Activities" class="w-full h-auto">
+            </div>
+
+            <!-- Content -->
+            <div class="w-full lg:w-[400px] order-2 lg:order-1">
+               <h2 class="text-2xl md:text-3xl lg:text-[32px] font-bold mb-4">
+                  Our Activities</h2>
+
+               <p class="text-gray-700 leading-[1.8] md:leading-[2] mb-4 text-sm md:text-base">
+                  Our metal and mineral trading services offer tailored solutions for sourcing and distributing
+                  essential raw materials, with a strong emphasis on scrap metal. Leveraging a global network of trusted
+                  partners, including recycling facilities, manufacturers, and suppliers, we ensure efficient,
+                  environmentally responsible transactions that meet industry needs.
+                  <br>
+                  <br>
+                  Our sources are located in South America, Turkey, Europe, and Dubai, providing high-quality materials
+                  to meet diverse market demands. Whether for recycling or manufacturing, we are committed to delivering
+                  consistent quality and fostering long-term partnerships in international markets.
+               </p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Scraps Metals Section -->
+   <section class="py-10 md:py-20 bg-white">
+      <div class="container mx-auto px-4 md:px-6">
+         <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-[120px]">
+            <!-- Image -->
+            <div class="w-full lg:w-[75%] order-1 lg:order-2">
+               <img src="images/scrape-metals.avif" alt="Scrap Metals"
+                  class="w-full lg:w-[770px] h-auto lg:h-[850px] object-cover">
+            </div>
+
+            <!-- Content -->
+            <div class="w-full lg:w-[25%] order-2 lg:order-1">
+               <div class="w-[50px] h-[1px] bg-[#000] mb-2"></div>
+               <h2 class="text-2xl md:text-3xl lg:text-[32px] font-bold mb-4">
+                  Scraps Metals</h2>
+
+               <p class="text-gray-700 leading-[1.6] md:leading-[1.7] mb-4 text-sm md:text-base">
+                  Heavy Melting Steel (HMS): This includes large, heavy pieces of scrap steel, such as beams, plates,
+                  and structures. HMS is often the primary source of scrap for EAFs.
+                  <br>
+                  <br>
+                  Shredded Scrap: This is scrap metal that has been shredded into smaller pieces, making it easier to
+                  melt and process in an EAF. Shredded scrap typically includes mixed metals from vehicles and
+                  appliances
+                  <br>
+                  <br>
+                  Obsolete Scrap: This category encompasses discarded products like old machinery, vehicles, appliances,
+                  and construction debris. It can vary in composition but is typically a mix of ferrous and non-ferrous
+                  metals.
+               </p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Non-ferrous Metals Section -->
+   <section class="py-10 md:py-20 bg-white">
+      <div class="container mx-auto px-4 md:px-6">
+         <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-[120px]">
+            <!-- Image -->
+            <div class="w-full lg:w-[75%] order-1 lg:order-2">
+               <img src="images/non-metals.avif" alt="Non-ferrous Metals"
+                  class="w-full lg:w-[770px] h-auto lg:h-[850px] object-cover">
+            </div>
+
+            <!-- Content -->
+            <div class="w-full lg:w-[25%] order-2 lg:order-1">
+               <div class="w-[50px] h-[1px] bg-[#000] mb-2"></div>
+               <h2 class="text-2xl md:text-3xl lg:text-[32px] font-bold mb-4">
+                  Non-ferrous Metals</h2>
+
+               <p class="text-gray-700 leading-[1.6] md:leading-[1.7] mb-4 text-sm md:text-base">
+                  At Rawaway, we recognize the vital role that non-ferrous metals play in various industries, and we are
+                  proud to offer comprehensive trading services for these essential materials.
+                  <br>
+                  <br>
+                  Our expertise extends beyond ferrous metals, encompassing a diverse range of non-ferrous metals,
+                  including aluminum, copper, lead, zinc, nickel, and titanium.
+                  <br>
+                  <br>
+                  By leveraging our extensive global network of suppliers and partners, we ensure that our clients have
+                  access to high-quality non-ferrous metals tailored to their specific needs. Whether for manufacturing,
+                  construction, or high-tech applications, we are committed to facilitating efficient and sustainable
+                  transactions that meet industry standards. Our focus on reliability and quality positions us as a
+                  trusted partner in the global non-ferrous metals market, helping our clients thrive in an
+                  ever-evolving landscape
+               </p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!--  Minerals Section -->
+   <section class="py-10 md:py-20 bg-white">
+      <div class="container mx-auto px-4 md:px-6">
+         <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-[120px]">
+            <!-- Image -->
+            <div class="w-full lg:w-[75%] order-1 lg:order-2">
+               <img src="images/Minerals.avif" alt="Minerals"
+                  class="w-full lg:w-[770px] h-auto lg:h-[850px] object-cover">
+            </div>
+
+            <!-- Content -->
+            <div class="w-full lg:w-[25%] order-2 lg:order-1">
+               <div class="w-[50px] h-[1px] bg-[#000] mb-2"></div>
+               <h2 class="text-2xl md:text-3xl lg:text-[32px] font-bold mb-4">
+                  Minerals</h2>
+
+               <p class="text-gray-700 leading-[1.8] md:leading-[2] mb-4 text-sm md:text-base">
+                  In addition to our expertise in metal trading, we also trade a wide range of essential minerals that
+                  are integral to various industries, including construction, manufacturing, energy production, and
+                  technology, thereby enhancing our role as a comprehensive provider in the global marketplace.
+               </p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Swiper section here -->
+   <section class="relative py-10 md:py-20 bg-white overflow-hidden">
+      <!-- Add Swiper CSS -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+      <div class="relative">
+         <!-- Swiper -->
+         <div class="swiper mySwiper w-full">
+            <div class="swiper-wrapper">
+               <div class="swiper-slide">
+                  <img src="images/swiper1.avif" alt="Experience 1"
+                     class="w-full h-[40vh] md:h-[60vh] lg:h-[80vh] object-cover">
+                  <div class="absolute inset-0 flex items-center justify-center z-10">
+                     <div class="text-center px-4">
+                        <h2 class="text-2xl md:text-6xl lg:text-8xl xl:text-[110px] font-bold text-white leading-tight">
+                           Easy and Simple <br class="hidden md:block"> Trading Tools
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <img src="images/swiper2.avif" alt="Experience 2"
+                     class="w-full h-[40vh] md:h-[60vh] lg:h-[80vh] object-cover">
+                  <div class="absolute inset-0 flex items-center justify-center z-10">
+                     <div class="text-center px-4">
+
+                     </div>
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <img src="images/swiper3.avif" alt="Experience 3"
+                     class="w-full h-[40vh] md:h-[60vh] lg:h-[80vh] object-cover">
+                  <div class="absolute inset-0 flex items-center justify-center z-10">
+                     <div class="text-center px-4">
+                        <h2 class="text-2xl md:text-6xl lg:text-8xl xl:text-[110px] font-bold text-white leading-tight">
+                           15+ Years of<br>Experience</h2>
+                     </div>
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <img src="images/swiper4.avif" alt="Experience 4"
+                     class="w-full h-[40vh] md:h-[60vh] lg:h-[80vh] object-cover">
+                  <div class="absolute inset-0 flex items-center justify-center z-10">
+                     <div class="text-center px-4">
+                        <h2 class="text-2xl md:text-6xl lg:text-8xl xl:text-[110px] font-bold text-white leading-tight">
+                           15+ Years of<br>Experience</h2>
+                     </div>
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <img src="images/swiper5.avif" alt="Experience 5"
+                     class="w-full h-[40vh] md:h-[60vh] lg:h-[80vh] object-cover">
+                  <div class="absolute inset-0 flex items-center justify-center z-10">
+                     <div class="text-center px-4">
+                        <h2 class="text-2xl md:text-6xl lg:text-8xl xl:text-[110px] font-bold text-white leading-tight">
+                           Turning Vision Into<br>Profit</h2>
+                     </div>
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <img src="images/swiper6.avif" alt="Experience 6"
+                     class="w-full h-[40vh] md:h-[60vh] lg:h-[80vh] object-cover">
+                  <div class="absolute inset-0 flex items-center justify-center z-10">
+                     <div class="text-center px-4">
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+         </div>
+      </div>
+
+      <!-- Add Swiper JS -->
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+      <!-- Initialize Swiper -->
+      <script>
+         var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            loop: true,
+            effect: "fade",
+            autoplay: {
+               delay: 3000,
+               disableOnInteraction: false,
+            },
+            pagination: {
+               el: ".swiper-pagination",
+               clickable: true,
+            },
+            navigation: {
+               nextEl: ".swiper-button-next",
+               prevEl: ".swiper-button-prev",
+            },
+         });
+      </script>
+
+      <style>
+         .swiper {
+            width: 100%;
+            height: 40vh;
+         }
+
+         @media (min-width: 768px) {
+            .swiper {
+               height: 60vh;
+            }
+         }
+
+         @media (min-width: 1024px) {
+            .swiper {
+               height: 80vh;
+            }
+         }
+
+         .swiper-button-next,
+         .swiper-button-prev {
+            color: #F3901D !important;
+         }
+
+         .swiper-pagination-bullet-active {
+            background: #F3901D !important;
+         }
+
+         .swiper-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 100%);
+            z-index: 1;
+         }
+
+         .swiper-slide img {
+            position: relative;
+            z-index: 0;
+         }
+
+         .swiper-slide {
+            position: relative;
+         }
+
+         @media (max-width: 768px) {
+
+            .swiper-button-next,
+            .swiper-button-prev {
+               display: none;
+            }
+         }
+      </style>
+   </section>
+
+   <!-- Global Informations Section -->
+   <section id="numbers" class="relative py-10 md:py-20 min-h-[400px] md:h-[600px] bg-cover bg-center informationBg">
+      <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+      <div class="relative container mx-auto px-4 md:px-6">
+         <div class="flex flex-col lg:flex-row justify-between items-start gap-8">
+            <!-- Left Side - Statistics -->
+            <div class="w-full lg:w-1/2">
+               <p class="text-white text-base md:text-lg mb-4">The Numbers</p>
+               <h2 class="text-[#F3901D] text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-16">Global Informations
+               </h2>
+
+               <div class="flex flex-col sm:flex-row gap-8 md:gap-20">
+                  <!-- Countries -->
+                  <div class="text-center">
+                     <div class="mb-4">
+                        <img src="./images/flag.avif" alt="flag" class="w-[80px] md:w-[130px] mx-auto">
+                     </div>
+                     <div class="text-white text-3xl md:text-4xl lg:text-6xl font-bold mb-2">12</div>
+                     <div class="text-white text-xs md:text-sm">In 12 Countries</div>
+                     <div class="w-12 md:w-16 h-[1px] bg-white mx-auto mt-2"></div>
+                  </div>
+
+                  <!-- Clients -->
+                  <div class="text-center">
+                     <div class="mb-4">
+                        <img src="./images/clients (1).avif" alt="clients" class="w-[80px] md:w-[130px] mx-auto">
+                     </div>
+                     <div class="text-white text-3xl md:text-4xl lg:text-6xl font-bold mb-2">28</div>
+                     <div class="text-white text-xs md:text-sm">Clients</div>
+                     <div class="w-12 md:w-16 h-[1px] bg-white mx-auto mt-2"></div>
+                  </div>
+
+                  <!-- Partners -->
+                  <div class="text-center">
+                     <div class="mb-4">
+                        <img src="./images/partners.avif" alt="partners" class="w-[80px] md:w-[130px] mx-auto">
+                     </div>
+                     <div class="text-white text-3xl md:text-4xl lg:text-6xl font-bold mb-2">46</div>
+                     <div class="text-white text-xs md:text-sm">Partners Worldwide</div>
+                     <div class="w-12 md:w-16 h-[1px] bg-white mx-auto mt-2"></div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Right Side - Office Locations -->
+            <div class="w-full lg:w-[40%]">
+               <div class="lg:pl-16 text-right mt-8 lg:mt-12">
+                  <h3 class="text-[#F3901D] text-2xl md:text-3xl font-bold mb-6 md:mb-8">Our Offices</h3>
+                  <div class="space-y-4 md:space-y-6 text-right ">
+                     <div>
+                        <h4 class="text-[#F3901D] font-bold text-xl mb-2">SHANGHAI: <span
+                              style="font-weight: 400;"
+                              class="text-white text-xs md:text-sm block md:inline">上海市徐汇区黄河南路489号金
+                              久大厦205室</span></h4>
+                     </div>
+                     <div>
+                        <h4 class="text-[#F3901D] font-bold text-xl mb-2">HONG KONG: <span
+                              style="font-weight: 400;"
+                              class="text-white text-xs md:text-sm text-normal block md:inline">Block D, 5/F, Chiu Tat
+                              Building 708-710 Prince Edward Road E San
+                              Po Kong Kowloon, Hongkong</span></h4>
+                     </div>
+                     <div>
+                        <h4 class="text-[#F3901D] font-bold text-xl mb-2">MARSEILLE: <span
+                              style="font-weight: 400;"
+                              class="text-white text-xs md:text-sm text-normal block md:inline">108 Rue Breteuil 13006
+                              Marseille, France</span></h4>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Footer Section -->
+   <div class="w-[90%] h-[1px] bg-[#000] mt-5 mx-auto"></div>
+   <footer class="py-8 md:py-16">
+      <div class="container mx-auto px-4 md:px-6">
+         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 md:mb-8 gap-6">
+            <!-- Logo -->
+            <div class="w-full lg:w-1/3 text-center lg:text-left">
+               <img src="images/logo.svg" alt="Rawaway Logo" class="h-12 md:h-16 w-auto mx-auto lg:mx-0">
+            </div>
+
+            <!-- Inquiries -->
+            <div class="w-full lg:w-1/3 flex justify-center">
+               <div>
+                  <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">Inquiries</h3>
+                  <p class="text-gray-600 mb-2 text-sm md:text-base">For any inquiries, questions or</p>
+                  <p class="text-gray-600 mb-4 text-sm md:text-base">commendations, please email to us:</p>
+                  <p class="text-gray-800 font-semibold text-sm md:text-base">info@rawaway.com</p>
+               </div>
+            </div>
+
+            <!-- Contact Button -->
+            <div class="w-full lg:w-1/3 text-center lg:text-right">
+               <button
+                  class="w-full sm:w-[200px] h-[50px] md:h-[60px] cursor-pointer hover:bg-white border border-[#F3901D] bg-[#F3901D] hover:border-[#000] hover:bg-[#d67b16] transition-colors duration-200">
+                  Contact Us
+               </button>
+            </div>
+         </div>
+
+         <!-- Copyright and Go Up -->
+         <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-gray-600 text-sm md:text-base">© 2024 by Rawaway.</p>
+            <a href="#" class="text-gray-800 underline go-up-button text-sm md:text-base">Go Up</a>
+         </div>
+      </div>
+   </footer>
+
+   <!-- Mobile Menu JavaScript -->
+   <script>
+      // Mobile menu functionality
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const closeMenuBtn = document.getElementById('close-menu-btn');
+      const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+      mobileMenuBtn.addEventListener('click', () => {
+         mobileMenu.classList.add('active');
+         document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+      });
+
+      closeMenuBtn.addEventListener('click', () => {
+         mobileMenu.classList.remove('active');
+         document.body.style.overflow = ''; // Re-enable scrolling
+      });
+
+      // Close menu when clicking on links
+      mobileMenuLinks.forEach(link => {
+         link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = ''; // Re-enable scrolling
+         });
+      });
+
+      // Go up button functionality
+      const goUpButton = document.querySelector('.go-up-button');
+      window.addEventListener('scroll', () => {
+         if (window.scrollY > 100) {
+            goUpButton.style.display = 'block';
+         } else {
+            goUpButton.style.display = 'none';
+         }
+      });
+
+      // Smooth scroll to top
+      goUpButton.addEventListener('click', (e) => {
+         e.preventDefault();
+         window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+         });
+      });
+   </script>
+</body>
+
+</html>
