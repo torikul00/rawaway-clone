@@ -1,3 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+@font-face {
+   font-family: 'FuturaStd';
+   src: url('/font/AvenirLTProBlack.otf') format('opentype');
+   font-weight: 300;
+   /* Light */
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'FuturaStd';
+   src: url('/font/AvenirLTProLight.otf') format('opentype');
+   font-weight: 500;
+   /* Medium */
+   font-style: normal;
+}
+/* Optional: if you have bold */
+@font-face {
+   font-family: 'FuturaStd';
+   src: url('/font/AvenirLTProMedium.otf') format('opentype');
+   font-weight: 700;
+   /* Bold */
+   font-style: normal;
+}
+
+h1,h2,h3,h4,h5,h6{
+   font-family: "Roboto", sans-serif;
+}
+p,span,a,button,input,textarea,select{
+   font-family: "FuturaStd", sans-serif;
+}
 .headerBg {
    background-image: url('./images/header.avif');
    background-size: cover;
