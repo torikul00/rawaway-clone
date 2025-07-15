@@ -51,7 +51,7 @@ p,span,a,button,input,textarea,select{
 }
 
 * {
-   /* scroll-behavior: smooth; */
+   scroll-behavior: smooth;
 }
 
 .headerBg>* {
